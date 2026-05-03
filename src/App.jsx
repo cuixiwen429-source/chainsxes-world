@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 import {
   createEssay,
   deleteEssay,
@@ -20,6 +20,8 @@ const outlineItems = [
   { id: "essays", label: "随笔" },
   { id: "interests", label: "兴趣爱好" },
 ];
+
+const themeTargets = [{ id: "hero", label: "Opening" }, ...outlineItems];
 
 const essayCategories = [
   "市场笔记",
@@ -153,65 +155,425 @@ const interestBlocks = [
   },
 ];
 
-function MountainScene({ className = "", style }) {
-  return (
-    <motion.div
-      className={`pointer-events-none absolute inset-0 overflow-hidden ${className}`}
-      style={style}
-      aria-hidden="true"
-    >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_12%,rgba(255,255,255,0.9),transparent_30%),linear-gradient(180deg,rgba(244,241,235,0.92),rgba(229,232,226,0.55)_52%,rgba(246,245,241,0.92))]" />
-      <svg
-        className="absolute bottom-[-2rem] left-1/2 h-[58vh] min-h-[420px] w-[140vw] -translate-x-1/2 text-stone-900/70"
-        viewBox="0 0 1600 620"
-        fill="none"
-        preserveAspectRatio="none"
-      >
-        <path
-          d="M0 465C132 413 239 386 344 421C428 449 495 534 594 501C681 472 704 361 806 337C913 312 989 425 1087 414C1191 402 1241 290 1345 283C1439 276 1510 352 1600 343V620H0V465Z"
-          fill="currentColor"
+const sceneThemes = {
+  hero: {
+    id: "hero",
+    index: "00",
+    label: "Opening Field",
+    title: "Mountain Signal",
+    visual: "mountain",
+    accent: "#6f7b6d",
+    ink: "#282521",
+    muted: "#9a9389",
+    surface:
+      "linear-gradient(145deg, #f7f5ef 0%, #e7e9df 42%, #f1efe8 72%, #d7d6ce 100%)",
+    sectionPlane:
+      "linear-gradient(180deg, rgba(255,255,255,0.18), rgba(229,226,216,0.24))",
+  },
+  about: {
+    id: "about",
+    index: "01",
+    label: "Identity",
+    title: "Personal Coordinates",
+    visual: "identity",
+    accent: "#2f6654",
+    ink: "#17251f",
+    muted: "#8d958e",
+    surface:
+      "linear-gradient(135deg, #f5f6ef 0%, #dce9e2 38%, #f2efe6 70%, #e4dac8 100%)",
+    sectionPlane:
+      "linear-gradient(135deg, rgba(255,255,255,0.18), rgba(204,226,216,0.28))",
+  },
+  education: {
+    id: "education",
+    index: "02",
+    label: "Education",
+    title: "Campus Timeline",
+    visual: "education",
+    accent: "#5d6f98",
+    ink: "#1d2435",
+    muted: "#8a8f9c",
+    surface:
+      "linear-gradient(135deg, #f3f5f7 0%, #d9e2ef 36%, #f2eee3 68%, #d8d0c2 100%)",
+    sectionPlane:
+      "linear-gradient(135deg, rgba(255,255,255,0.16), rgba(200,213,232,0.3))",
+  },
+  practice: {
+    id: "practice",
+    index: "03",
+    label: "Practice",
+    title: "Blueprint Motion",
+    visual: "practice",
+    accent: "#146f79",
+    ink: "#10262b",
+    muted: "#79959a",
+    surface:
+      "linear-gradient(135deg, #eff7f5 0%, #cfe6e5 34%, #ecebd9 66%, #d4dfd3 100%)",
+    sectionPlane:
+      "linear-gradient(135deg, rgba(255,255,255,0.12), rgba(183,222,220,0.3))",
+  },
+  essays: {
+    id: "essays",
+    index: "04",
+    label: "Writing",
+    title: "Paper And Signal",
+    visual: "essays",
+    accent: "#805443",
+    ink: "#2b211c",
+    muted: "#9c8b80",
+    surface:
+      "linear-gradient(135deg, #f7f2e8 0%, #eadfcd 35%, #f4f0e5 64%, #d9e1d9 100%)",
+    sectionPlane:
+      "linear-gradient(135deg, rgba(255,255,255,0.2), rgba(229,210,189,0.28))",
+  },
+  interests: {
+    id: "interests",
+    index: "05",
+    label: "Interests",
+    title: "Rhythm Archive",
+    visual: "interests",
+    accent: "#725a8a",
+    ink: "#241d2f",
+    muted: "#91869d",
+    surface:
+      "linear-gradient(135deg, #f2f0f5 0%, #ddd5e9 32%, #e8efe6 66%, #d8d3c5 100%)",
+    sectionPlane:
+      "linear-gradient(135deg, rgba(255,255,255,0.18), rgba(210,199,226,0.3))",
+  },
+};
+
+function SceneArtwork({ theme }) {
+  if (theme.visual === "mountain") {
+    return (
+      <svg className="scene-art scene-art-mountain" viewBox="0 0 1600 900" fill="none">
+        <motion.path
+          d="M0 620C148 560 246 520 388 557C514 590 578 692 720 650C842 614 880 458 1029 429C1174 401 1243 530 1386 506C1476 491 1532 438 1600 407V900H0V620Z"
+          fill={theme.ink}
           fillOpacity="0.08"
+          initial={{ opacity: 0, y: 34 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
         />
-        <path
-          d="M0 383C129 361 220 268 347 287C444 301 488 402 585 398C702 394 751 237 872 227C978 218 1034 326 1137 319C1242 312 1302 191 1408 181C1486 174 1546 222 1600 248V620H0V383Z"
-          fill="currentColor"
+        <motion.path
+          d="M0 511C150 470 257 361 407 391C530 415 586 538 711 529C852 519 907 332 1056 315C1180 300 1245 419 1370 396C1469 377 1530 300 1600 282V900H0V511Z"
+          fill={theme.accent}
           fillOpacity="0.12"
+          initial={{ opacity: 0, y: 42 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.35, ease: [0.22, 1, 0.36, 1], delay: 0.08 }}
         />
-        <path
-          d="M0 299C88 265 159 253 242 273C337 296 393 346 491 315C585 286 614 183 712 157C826 126 910 220 1013 196C1118 171 1157 54 1267 48C1401 41 1475 154 1600 128V620H0V299Z"
-          fill="currentColor"
-          fillOpacity="0.08"
-        />
-        <path
-          d="M107 385C192 356 258 355 332 375"
-          stroke="currentColor"
-          strokeOpacity="0.15"
-          strokeWidth="2"
-        />
-        <path
-          d="M878 284C948 258 1000 259 1061 279"
-          stroke="currentColor"
-          strokeOpacity="0.12"
-          strokeWidth="2"
+        <motion.path
+          d="M124 632C254 589 349 589 461 624M977 408C1072 370 1143 371 1230 402M819 674C945 626 1068 620 1218 651"
+          stroke={theme.ink}
+          strokeOpacity="0.16"
+          strokeWidth="3"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1], delay: 0.25 }}
         />
       </svg>
-      <div className="absolute left-[-10%] top-[32%] h-40 w-[72vw] rounded-full bg-white/50 blur-3xl" />
-      <div className="absolute right-[-12%] top-[48%] h-48 w-[64vw] rounded-full bg-stone-100/70 blur-3xl" />
-    </motion.div>
+    );
+  }
+
+  if (theme.visual === "identity") {
+    return (
+      <svg className="scene-art scene-art-identity" viewBox="0 0 1600 900" fill="none">
+        {[0, 1, 2, 3].map((item) => (
+          <motion.rect
+            key={item}
+            x={210 + item * 80}
+            y={160 + item * 54}
+            width={760 - item * 90}
+            height={420 - item * 44}
+            rx="8"
+            stroke={theme.accent}
+            strokeOpacity={0.2 + item * 0.04}
+            strokeWidth="2"
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 1 + item * 0.18, ease: [0.22, 1, 0.36, 1] }}
+          />
+        ))}
+        <motion.path
+          d="M1032 236C1120 197 1215 208 1288 268C1374 339 1392 465 1330 555C1265 649 1122 681 1017 614C929 558 892 443 928 346C946 299 978 260 1032 236Z"
+          fill={theme.accent}
+          fillOpacity="0.1"
+          stroke={theme.ink}
+          strokeOpacity="0.16"
+          strokeWidth="2"
+          initial={{ opacity: 0, scale: 0.94 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
+        />
+        <motion.path
+          d="M1002 392H1358M1180 218V648M1072 318L1288 542M1294 318L1076 542"
+          stroke={theme.ink}
+          strokeOpacity="0.2"
+          strokeWidth="2"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.35, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+        />
+      </svg>
+    );
+  }
+
+  if (theme.visual === "education") {
+    return (
+      <svg className="scene-art scene-art-education" viewBox="0 0 1600 900" fill="none">
+        {[0, 1, 2, 3].map((item) => (
+          <motion.rect
+            key={item}
+            x={820 + item * 118}
+            y={235}
+            width="64"
+            height="440"
+            rx="6"
+            fill={theme.ink}
+            fillOpacity="0.055"
+            stroke={theme.accent}
+            strokeOpacity="0.2"
+            strokeWidth="2"
+            initial={{ opacity: 0, y: 60 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, delay: item * 0.1, ease: [0.22, 1, 0.36, 1] }}
+          />
+        ))}
+        <motion.path
+          d="M748 214H1352M786 708H1314M336 302H560C627 302 680 355 680 422C680 489 627 542 560 542H336V302Z"
+          stroke={theme.ink}
+          strokeOpacity="0.18"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
+        />
+        <motion.path
+          d="M390 352H604M390 410H594M390 468H560"
+          stroke={theme.accent}
+          strokeOpacity="0.45"
+          strokeWidth="2"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
+        />
+      </svg>
+    );
+  }
+
+  if (theme.visual === "practice") {
+    return (
+      <svg className="scene-art scene-art-practice" viewBox="0 0 1600 900" fill="none">
+        <defs>
+          <pattern id="blueprint-grid" width="72" height="72" patternUnits="userSpaceOnUse">
+            <path d="M72 0H0V72" stroke={theme.ink} strokeOpacity="0.08" strokeWidth="1" />
+          </pattern>
+        </defs>
+        <rect width="1600" height="900" fill="url(#blueprint-grid)" opacity="0.8" />
+        <motion.path
+          d="M210 620C324 472 438 430 584 498C726 565 818 546 918 415C1023 277 1160 236 1330 300"
+          stroke={theme.accent}
+          strokeOpacity="0.46"
+          strokeWidth="14"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
+        />
+        <motion.path
+          d="M286 280H546V430H826V278H1178M826 430V640H1162"
+          stroke={theme.ink}
+          strokeOpacity="0.24"
+          strokeWidth="3"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.35, ease: [0.22, 1, 0.36, 1], delay: 0.16 }}
+        />
+        {[286, 546, 826, 1178, 1162].map((x, item) => (
+          <motion.rect
+            key={x}
+            x={x - 18}
+            y={item === 4 ? 622 : item === 2 ? 412 : 262}
+            width="36"
+            height="36"
+            rx="6"
+            fill={theme.ink}
+            fillOpacity="0.13"
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.3 + item * 0.06 }}
+          />
+        ))}
+      </svg>
+    );
+  }
+
+  if (theme.visual === "essays") {
+    return (
+      <svg className="scene-art scene-art-essays" viewBox="0 0 1600 900" fill="none">
+        {[0, 1, 2].map((item) => (
+          <motion.rect
+            key={item}
+            x={810 + item * 42}
+            y={170 + item * 38}
+            width="460"
+            height="560"
+            rx="8"
+            fill="#ffffff"
+            fillOpacity={0.24 - item * 0.04}
+            stroke={theme.ink}
+            strokeOpacity="0.12"
+            strokeWidth="2"
+            initial={{ opacity: 0, x: 40, y: 24 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            transition={{ duration: 0.85, delay: item * 0.12, ease: [0.22, 1, 0.36, 1] }}
+          />
+        ))}
+        <motion.path
+          d="M268 528C344 448 421 448 498 528C575 608 652 608 729 528C806 448 883 448 960 528"
+          stroke={theme.accent}
+          strokeOpacity="0.44"
+          strokeWidth="7"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.35, ease: [0.22, 1, 0.36, 1] }}
+        />
+        <motion.path
+          d="M910 318H1188M910 382H1210M910 446H1132M910 510H1196M910 574H1080"
+          stroke={theme.ink}
+          strokeOpacity="0.18"
+          strokeWidth="3"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.2, delay: 0.18, ease: [0.22, 1, 0.36, 1] }}
+        />
+      </svg>
+    );
+  }
+
+  return (
+    <svg className="scene-art scene-art-interests" viewBox="0 0 1600 900" fill="none">
+      {[0, 1, 2, 3, 4, 5, 6].map((item) => (
+        <motion.rect
+          key={item}
+          x={248 + item * 66}
+          y={470 - (item % 4) * 44}
+          width="28"
+          height={170 + (item % 3) * 58}
+          rx="8"
+          fill={theme.accent}
+          fillOpacity="0.2"
+          initial={{ scaleY: 0.2, opacity: 0 }}
+          animate={{ scaleY: 1, opacity: 1 }}
+          transition={{ duration: 0.9, delay: item * 0.06, ease: [0.22, 1, 0.36, 1] }}
+          style={{ transformOrigin: "center bottom" }}
+        />
+      ))}
+      {[0, 1, 2].map((item) => (
+        <motion.rect
+          key={item}
+          x={860 + item * 118}
+          y={230 + item * 72}
+          width="280"
+          height="210"
+          rx="8"
+          fill="#ffffff"
+          fillOpacity="0.16"
+          stroke={theme.ink}
+          strokeOpacity="0.14"
+          strokeWidth="2"
+          initial={{ opacity: 0, rotate: item === 1 ? 4 : -3, y: 34 }}
+          animate={{ opacity: 1, rotate: item === 1 ? 4 : -3, y: 0 }}
+          transition={{ duration: 0.9, delay: 0.14 + item * 0.1, ease: [0.22, 1, 0.36, 1] }}
+        />
+      ))}
+      <motion.path
+        d="M190 706C390 610 543 638 706 724C872 811 1084 785 1350 612"
+        stroke={theme.ink}
+        strokeOpacity="0.18"
+        strokeWidth="3"
+        strokeLinecap="round"
+        initial={{ pathLength: 0, opacity: 0 }}
+        animate={{ pathLength: 1, opacity: 1 }}
+        transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1], delay: 0.16 }}
+      />
+    </svg>
+  );
+}
+
+function ImmersiveBackdrop({ activeId, y }) {
+  const theme = sceneThemes[activeId] || sceneThemes.hero;
+
+  return (
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={theme.id}
+          className="absolute inset-0"
+          style={{ background: theme.surface }}
+          initial={{ opacity: 0, scale: 1.035, filter: "blur(14px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+          exit={{ opacity: 0, scale: 0.985, filter: "blur(12px)" }}
+          transition={{ duration: 1.05, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <motion.div className="absolute inset-0" style={{ y }}>
+            <SceneArtwork theme={theme} />
+          </motion.div>
+          <div className="theme-ruling" style={{ "--theme-ink": theme.ink }} />
+          <div className="theme-edge-light" />
+          <motion.div
+            className="theme-caption"
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, delay: 0.25 }}
+          >
+            <span>{theme.index}</span>
+            <strong>{theme.title}</strong>
+          </motion.div>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function SectionBackdropMark({ theme }) {
+  return (
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+      <div className="absolute inset-0 opacity-80" style={{ background: theme.sectionPlane }} />
+      <div className="section-ruling" style={{ "--theme-accent": theme.accent }} />
+      <span className="section-index" style={{ color: theme.accent }}>
+        {theme.index}
+      </span>
+      <span className="section-label" style={{ color: theme.ink }}>
+        {theme.label}
+      </span>
+    </div>
   );
 }
 
 function SectionShell({ id, eyebrow, title, children, className = "" }) {
+  const theme = sceneThemes[id] || sceneThemes.about;
+
   return (
     <motion.section
       id={id}
-      className={`relative overflow-hidden px-5 py-24 sm:px-8 lg:px-16 ${className}`}
-      initial={{ opacity: 0, y: 42 }}
+      className={`relative min-h-[92vh] overflow-hidden px-5 py-24 sm:px-8 lg:px-16 ${className}`}
+      initial={{ opacity: 0, y: 56 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ amount: 0.18, once: true }}
-      transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
+      viewport={{ amount: 0.16, once: false }}
+      transition={{ duration: 0.82, ease: [0.22, 1, 0.36, 1] }}
     >
-      <div className="relative mx-auto max-w-6xl pr-0 lg:pr-28">
+      <SectionBackdropMark theme={theme} />
+      <div className="relative z-10 mx-auto max-w-6xl pr-0 lg:pr-28">
         <div className="mb-12 max-w-3xl">
           {eyebrow ? (
             <p className="mb-4 text-xs uppercase tracking-[0.28em] text-stone-500">
@@ -372,10 +734,10 @@ function EssayCard({ essay, isAdmin, onDelete, isDeleting }) {
 
 export default function ChainsXesWorld() {
   const { scrollY, scrollYProgress } = useScroll();
-  const mountainY = useTransform(scrollY, [0, 900], [0, -68]);
+  const backdropY = useTransform(scrollY, [0, 2600], [0, -180]);
   const objectUrlsRef = useRef(new Set());
   const [session, setSession] = useState(null);
-  const [activeSection, setActiveSection] = useState("about");
+  const [activeSection, setActiveSection] = useState("hero");
   const [loginEmail, setLoginEmail] = useState(ADMIN_EMAIL);
   const [authBusy, setAuthBusy] = useState(false);
   const [authNotice, setAuthNotice] = useState({ tone: "neutral", text: "" });
@@ -459,7 +821,7 @@ export default function ChainsXesWorld() {
       }
     );
 
-    outlineItems.forEach((item) => {
+    themeTargets.forEach((item) => {
       const section = document.getElementById(item.id);
       if (section) observer.observe(section);
     });
@@ -695,6 +1057,7 @@ export default function ChainsXesWorld() {
 
   return (
     <div className="relative min-h-screen overflow-x-hidden scroll-smooth bg-[#f5f2eb] text-stone-900 selection:bg-stone-900 selection:text-white">
+      <ImmersiveBackdrop activeId={activeSection} y={backdropY} />
       <motion.div
         className="fixed left-0 top-0 z-50 h-[3px] w-full origin-left bg-stone-950"
         style={{ scaleX: scrollYProgress }}
@@ -730,8 +1093,10 @@ export default function ChainsXesWorld() {
         </nav>
       </aside>
 
-      <header className="relative flex min-h-screen items-center justify-center overflow-hidden px-5 py-24 sm:px-8 lg:px-16">
-        <MountainScene style={{ y: mountainY }} />
+      <header
+        id="hero"
+        className="relative z-10 flex min-h-screen items-center justify-center overflow-hidden px-5 py-24 sm:px-8 lg:px-16"
+      >
         <div className="absolute inset-x-0 top-0 z-10 mx-auto flex max-w-7xl items-center justify-between px-5 py-6 text-sm text-stone-600 sm:px-8 lg:px-16">
           <button
             type="button"
@@ -855,7 +1220,7 @@ export default function ChainsXesWorld() {
         </motion.div>
       </header>
 
-      <main>
+      <main className="relative z-10">
         <SectionShell id="about" eyebrow="01 / Personal Coordinates" title="About Me">
           <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="space-y-6 text-lg leading-9 text-stone-700">
@@ -886,7 +1251,6 @@ export default function ChainsXesWorld() {
           id="education"
           eyebrow="02 / From Engineering To Finance"
           title="教育经历"
-          className="bg-[linear-gradient(180deg,rgba(245,242,235,1),rgba(233,235,229,0.9),rgba(246,245,241,1))]"
         >
           <div className="relative">
             <div className="absolute left-5 top-10 hidden h-[calc(100%-5rem)] w-px bg-stone-300/80 md:block" />
@@ -961,7 +1325,6 @@ export default function ChainsXesWorld() {
           id="essays"
           eyebrow="04 / Notes In Progress"
           title="随笔"
-          className="bg-[linear-gradient(180deg,rgba(246,245,241,1),rgba(232,232,226,0.8),rgba(245,242,235,1))]"
         >
           <div className="mb-8 max-w-3xl text-base leading-8 text-stone-600">
             这里不是正式文章合集，而是我的观察记录。可能是一段市场复盘，也可能是一张照片背后的情绪；可能是一次

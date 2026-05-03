@@ -30,3 +30,148 @@ textarea,
 select {
   font: inherit;
 }
+
+.scene-art {
+  position: absolute;
+  right: -16vw;
+  bottom: -18vh;
+  width: 122vw;
+  min-width: 980px;
+  height: auto;
+}
+
+.scene-art-identity,
+.scene-art-education,
+.scene-art-practice,
+.scene-art-essays,
+.scene-art-interests {
+  bottom: -8vh;
+}
+
+.scene-art-practice {
+  right: -10vw;
+  opacity: 0.9;
+}
+
+.theme-ruling {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      color-mix(in srgb, var(--theme-ink) 10%, transparent) 0 1px,
+      transparent 1px 92px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      color-mix(in srgb, var(--theme-ink) 8%, transparent) 0 1px,
+      transparent 1px 92px
+    );
+  opacity: 0.32;
+  mask-image: linear-gradient(180deg, transparent, #000 18%, #000 76%, transparent);
+}
+
+.theme-edge-light {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.72), transparent 26%, transparent 72%, rgba(255, 255, 255, 0.42)),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.62), transparent 22%, transparent 78%, rgba(245, 242, 235, 0.78));
+}
+
+.theme-caption {
+  position: absolute;
+  left: 2rem;
+  bottom: 2rem;
+  display: none;
+  align-items: center;
+  gap: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.62);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.38);
+  padding: 0.7rem 0.9rem;
+  color: rgba(28, 25, 23, 0.62);
+  box-shadow: 0 18px 56px rgba(30, 28, 24, 0.08);
+  backdrop-filter: blur(18px);
+}
+
+.theme-caption span {
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+}
+
+.theme-caption strong {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.section-ruling {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--theme-accent) 12%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--theme-accent) 12%, transparent) 1px, transparent 1px);
+  background-size: 72px 72px;
+  opacity: 0.24;
+  mask-image: linear-gradient(90deg, transparent, #000 12%, #000 78%, transparent);
+}
+
+.section-index {
+  position: absolute;
+  right: 4.5rem;
+  top: 5.5rem;
+  font-size: 9rem;
+  font-weight: 700;
+  line-height: 0.8;
+  opacity: 0.07;
+}
+
+.section-label {
+  position: absolute;
+  right: 5rem;
+  bottom: 6rem;
+  max-width: 18rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  opacity: 0.16;
+  transform: rotate(90deg);
+  transform-origin: right bottom;
+}
+
+@media (min-width: 1024px) {
+  .theme-caption {
+    display: flex;
+  }
+}
+
+@media (max-width: 767px) {
+  .scene-art {
+    right: -96vw;
+    bottom: -8vh;
+    min-width: 900px;
+  }
+
+  .section-index {
+    right: 1.25rem;
+    top: 5rem;
+    font-size: 5.5rem;
+  }
+
+  .section-label {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
