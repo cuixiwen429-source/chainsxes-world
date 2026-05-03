@@ -15,143 +15,143 @@ import { ADMIN_EMAIL, isAdminUser, isSupabaseConfigured } from "./lib/supabase";
 
 const outlineItems = [
   { id: "about", label: "About Me" },
-  { id: "education", label: "教育经历" },
-  { id: "practice", label: "竞赛 / 实践经历" },
-  { id: "essays", label: "随笔" },
-  { id: "interests", label: "兴趣爱好" },
+  { id: "education", label: "Education" },
+  { id: "practice", label: "Practice" },
+  { id: "essays", label: "Field Notes" },
+  { id: "interests", label: "Interests" },
 ];
 
 const themeTargets = [{ id: "hero", label: "Opening" }, ...outlineItems];
 
 const essayCategories = [
-  "市场笔记",
-  "Web3 观察",
-  "AI 工具",
-  "摄影札记",
-  "音乐与舞台",
-  "生活随笔",
+  "Market Notes",
+  "Web3 Signals",
+  "AI Tools",
+  "Photography",
+  "Music & Stage",
+  "Life Notes",
 ];
 
-const photoCategories = ["全部", "风光", "城市", "细节", "全景", "纪实"];
-const uploadPhotoCategories = ["风光", "城市", "细节", "全景", "纪实"];
+const photoCategories = ["All", "Landscape", "City", "Details", "Panorama", "Documentary"];
+const uploadPhotoCategories = ["Landscape", "City", "Details", "Panorama", "Documentary"];
 
 const aboutCards = [
   {
-    title: "工程背景",
-    words: "结构化思维、数据处理、工程训练",
-    body: "习惯先拆结构，再看变量、边界与结果。",
+    title: "Engineering Grounding",
+    words: "Systems thinking, data handling, technical training",
+    body: "I tend to map the structure first, then look at variables, boundaries, and outcomes.",
   },
   {
-    title: "金融转向",
-    words: "资本市场、投资分析、风险意识",
-    body: "从价格波动走向价值、周期与纪律。",
+    title: "Finance Transition",
+    words: "Capital markets, valuation, risk discipline",
+    body: "Markets pushed me to think beyond price movement, toward value, cycles, and discipline.",
   },
   {
-    title: "表达方式",
-    words: "音乐、摄影、随笔、社交",
-    body: "用节奏、影像和文字保留观察世界的入口。",
+    title: "Ways Of Expression",
+    words: "Music, photography, writing, conversation",
+    body: "Rhythm, images, and words keep another channel open for observing the world.",
   },
   {
-    title: "技术兴趣",
-    words: "AI、Web3、数码、工具流",
-    body: "更关注工具如何进入真实学习、研究与创作。",
+    title: "Tool Curiosity",
+    words: "AI, Web3, devices, workflows",
+    body: "I care less about novelty itself and more about how tools enter real learning and creation.",
   },
 ];
 
 const educationItems = [
   {
-    school: "黑龙江大学",
-    degree: "水利水电工程｜本科",
+    school: "Heilongjiang University",
+    degree: "Hydraulic and Hydropower Engineering | B.Eng.",
     period: "Engineering",
-    body: "本科阶段接受水利水电工程训练，学习工程计算、结构化分析、数据处理、项目设计和水利工程相关专业知识。工科背景构成了我分析问题的底层方法。",
+    body: "My undergraduate training built a technical base in engineering computation, structured analysis, data handling, project design, and water resources systems. It shaped the way I break down problems.",
   },
   {
-    school: "华东师范大学",
-    degree: "金融硕士｜硕士阶段",
+    school: "East China Normal University",
+    degree: "Master of Finance | Graduate Study",
     period: "Finance",
-    body: "硕士阶段转向金融领域，希望把工程训练中的逻辑、数据和系统分析能力迁移到资本市场、公司研究、投资分析和股权融资相关场景中。",
+    body: "For graduate study, I am moving into finance and applying engineering habits to capital markets, company research, investment analysis, and equity financing contexts.",
   },
 ];
 
 const practiceGroups = [
   {
     eyebrow: "A",
-    title: "工程与创新实践",
-    body: "工科竞赛和项目经历让我习惯把复杂问题拆成结构、参数、流程和结果。相比单纯提出想法，我更关注方案是否能被推导、被验证、被落地。",
-    tags: ["水利相关竞赛", "水创赛", "智能滴灌", "工程设计", "数据处理"],
+    title: "Engineering And Innovation",
+    body: "Engineering competitions and project work trained me to translate complex problems into structure, parameters, process, and outcome. I am less interested in ideas that sound good and more interested in systems that can be reasoned through, tested, and built.",
+    tags: ["Water Engineering", "Innovation Design", "Smart Irrigation", "Engineering Design", "Data Handling"],
     projects: [
       {
         name: "Water Innovation Design Competition",
-        body: "参与立体化除磷系统设计，将机械调节、监测反馈、生物强化与数据管理整合为工程方案。",
+        body: "Designed a multi-layer phosphorus removal system combining mechanical adjustment, monitoring feedback, biological enhancement, and data management.",
       },
       {
         name: "Smart Irrigation Project",
-        body: "参与智能滴灌项目，围绕墒情识别、U-Net 模型辅助监测、资金预算与现金流管理展开。",
+        body: "Worked on a smart drip irrigation project involving soil moisture recognition, U-Net assisted monitoring, budgeting, and cash-flow planning.",
       },
       {
         name: "Pharma Cloud Pavilion",
-        body: "参与或主导大健康平台商业计划书、市场定位、盈利模式、公司注册与融资筹备。",
+        body: "Helped shape a health-tech platform business plan, including market positioning, revenue model, company registration, and early financing preparation.",
       },
     ],
   },
   {
     eyebrow: "B",
-    title: "金融与市场实践",
-    body: "我从大三开始逐渐对金融市场产生兴趣，先后接触 A 股、港股和 Crypto 市场。相比只看价格涨跌，我希望逐渐建立对公司价值、市场结构、风险控制和长期策略的理解。",
-    tags: ["A 股", "港股", "公司基本面", "DCF 估值", "ECM", "定向增发"],
+    title: "Markets And Finance",
+    body: "My interest in markets started during my junior year and expanded from A-shares and Hong Kong equities to crypto. I want to understand not only price movement, but also business value, market structure, risk control, and long-term strategy.",
+    tags: ["A-shares", "Hong Kong Equities", "Fundamentals", "DCF Valuation", "ECM", "Private Placement"],
     projects: [],
   },
   {
     eyebrow: "C",
-    title: "Web3 / Crypto 实践",
-    body: "在 Web3 领域，我参与过 DeFi、质押、空投、项目打新、新币发行和链上交互，也阅读过多份 Crypto 白皮书。这个过程让我理解了链上投资中的收益结构、激励机制和风险暴露。\n\n我也曾经历高杠杆合约交易失败并最终爆仓。这不是值得美化的经历，但它让我真正理解了仓位、杠杆、风险和纪律。",
-    tags: ["DeFi", "链上质押", "空投", "新币发行", "白皮书", "BTC / ETH / SOL"],
+    title: "Web3 And Crypto",
+    body: "In Web3, I have explored DeFi, staking, airdrops, launch events, token issuance, and on-chain interaction, while reading crypto white papers along the way. It helped me understand yield structures, incentive design, and risk exposure on-chain.\n\nI also experienced the failure of high-leverage contract trading. It is not something to romanticize, but it made position sizing, leverage, risk, and discipline feel concrete.",
+    tags: ["DeFi", "On-chain Staking", "Airdrops", "Token Launches", "White Papers", "BTC / ETH / SOL"],
     projects: [],
   },
   {
     eyebrow: "D",
-    title: "国际交流与社团实践",
-    body: "大学期间，我加入国际青年联谊会，并担任文艺国青相关委员。我经常与不同国家和地区的学生交流，包括日本、俄罗斯、美国、欧洲、非洲等背景的朋友。对我来说，社交不是简单聊天，而是一种学习方式。\n\n我也参与过国家级“知行中国 / 知情中国”相关项目，与多国学生协作完成项目任务。",
-    tags: ["国际青年联谊会", "文艺国青委员", "多国学生交流", "知行中国", "项目协作"],
+    title: "International Exchange",
+    body: "During college, I joined an international youth association and worked on cultural exchange activities. I often talked with students from Japan, Russia, the United States, Europe, Africa, and other backgrounds. For me, conversation is not just social energy. It is a way of learning.\n\nI also joined national-level international exchange projects and collaborated with students from different countries on shared project work.",
+    tags: ["International Youth Association", "Cultural Exchange", "Global Students", "China Exchange Projects", "Collaboration"],
     projects: [],
   },
 ];
 
 const musicMembers = [
-  { role: "键盘手", name: "Henry" },
-  { role: "吉他手", name: "Mr.Jiang" },
-  { role: "主唱", name: "Miss.Wang" },
-  { role: "鼓手", name: "崔曦文" },
+  { role: "Keyboard", name: "Henry" },
+  { role: "Guitar", name: "Mr. Jiang" },
+  { role: "Vocal", name: "Miss Wang" },
+  { role: "Drums", name: "Cui Xiwen" },
 ];
 
 const performances = [
-  "校园蜜蜂音乐节",
-  "呼唤东北音乐节",
-  "齐齐哈尔市级高校音乐节",
-  "高校音乐节相关演出",
-  "哈尔滨机场路 SUBLIFE 演出合作",
-  "与哈尔滨多所高校乐手合作",
-  "与刀郎鼓手方正天所在乐队“短歌”合作",
+  "Campus Bee Music Festival",
+  "Calling Northeast Music Festival",
+  "Qiqihar University Music Festival",
+  "University music events",
+  "SUBLIFE performance collaboration in Harbin",
+  "Collaborations with musicians from Harbin universities",
+  "Collaboration with the band Duange",
 ];
 
 const interestBlocks = [
   {
     key: "badminton",
-    title: "羽毛球",
-    body: "羽毛球是我大学期间长期坚持的运动。它训练了我的反应、节奏、判断和对抗中的稳定性。",
-    tags: ["羽毛球社团", "学院队经历", "四五年", "单打", "双打", "莱维杯"],
+    title: "Badminton",
+    body: "Badminton has been one of my long-term sports through college. It trained reaction speed, tempo, judgment, and steadiness under pressure.",
+    tags: ["Badminton Club", "School Team", "Four-plus Years", "Singles", "Doubles", "Levi Cup"],
   },
   {
     key: "ai",
-    title: "AI 与数码",
-    body: "我对 AI 和数码工具保持长期兴趣。相比单纯体验新工具，我更关注它们如何进入真实工作流，帮助我完成学习、写作、研究、数据整理和内容创作。",
-    tags: ["ChatGPT", "Claude", "Gemini", "Grok", "Cursor", "酷安", "刷机", "系统优化", "手机摄影"],
+    title: "AI And Devices",
+    body: "I keep a long-term interest in AI and digital tools. Instead of simply trying new tools, I care about how they become part of real workflows for learning, writing, research, data organization, and content creation.",
+    tags: ["ChatGPT", "Claude", "Gemini", "Grok", "Cursor", "Coolapk", "ROM Flashing", "System Tuning", "Mobile Photography"],
   },
   {
     key: "social",
-    title: "社交与国际交流",
-    body: "我喜欢和不同背景的人交流。对我来说，社交不是简单聊天，而是一种学习方式。",
-    tags: ["ENFP", "聊天", "请教", "国际青年联谊会", "多国学生交流", "知行中国 / 知情中国"],
+    title: "People And Exchange",
+    body: "I enjoy talking with people from different backgrounds. For me, social interaction is not just small talk. It is another way to understand the world.",
+    tags: ["ENFP", "Conversation", "Learning From Others", "International Youth Association", "Global Exchange", "Cross-cultural Projects"],
   },
 ];
 
@@ -705,7 +705,7 @@ function EssayCard({ essay, isAdmin, onDelete, isDeleting }) {
             onClick={() => onDelete(essay)}
             className="w-fit rounded-full border border-stone-300 px-3 py-1.5 text-xs text-stone-500 transition hover:border-red-300 hover:text-red-600 disabled:cursor-not-allowed disabled:opacity-50"
           >
-            {isDeleting ? "删除中" : "删除"}
+            {isDeleting ? "Deleting" : "Delete"}
           </button>
         ) : null}
       </div>
@@ -745,15 +745,15 @@ export default function ChainsXesWorld() {
   const [formBusy, setFormBusy] = useState(false);
   const [notice, setNotice] = useState({ tone: "neutral", text: "" });
   const [essays, setEssays] = useState([]);
-  const [essayTitle, setEssayTitle] = useState("一段新的观察");
-  const [essayCategory, setEssayCategory] = useState("市场笔记");
+  const [essayTitle, setEssayTitle] = useState("A New Observation");
+  const [essayCategory, setEssayCategory] = useState("Market Notes");
   const [essayBody, setEssayBody] = useState(
-    "这里可以写一次市场复盘、一张照片背后的情绪，也可以写一次 Web3 项目的研究。登录管理员账号后发布，内容会保存到云端。"
+    "Use this space for a market reflection, the mood behind a photograph, or a Web3 project note. Once published by the admin, it will be saved to the cloud."
   );
   const [essayImages, setEssayImages] = useState([]);
   const [essayAudio, setEssayAudio] = useState(null);
-  const [photoUploadCategory, setPhotoUploadCategory] = useState("风光");
-  const [photoFilter, setPhotoFilter] = useState("全部");
+  const [photoUploadCategory, setPhotoUploadCategory] = useState("Landscape");
+  const [photoFilter, setPhotoFilter] = useState("All");
   const [photos, setPhotos] = useState([]);
   const [previewPhoto, setPreviewPhoto] = useState(null);
   const [deletingEssayId, setDeletingEssayId] = useState(null);
@@ -782,7 +782,7 @@ export default function ChainsXesWorld() {
     if (!isSupabaseConfigured) {
       setNotice({
         tone: "neutral",
-        text: "Supabase 尚未配置。页面可正常浏览，云端随笔和照片会在填入环境变量后加载。",
+        text: "Supabase is not configured yet. The site can be browsed normally; cloud notes and photos will load after the environment variables are added.",
       });
       return;
     }
@@ -792,11 +792,11 @@ export default function ChainsXesWorld() {
       const content = await loadContent();
       setEssays(content.essays);
       setPhotos(content.photos);
-      setNotice({ tone: "success", text: "云端内容已同步。" });
+      setNotice({ tone: "success", text: "Cloud content synced." });
     } catch (error) {
       setNotice({
         tone: "error",
-        text: error.message || "云端内容加载失败，请检查 Supabase 配置和 RLS 策略。",
+        text: error.message || "Cloud content failed to load. Check the Supabase configuration and RLS policies.",
       });
     } finally {
       setContentBusy(false);
@@ -840,7 +840,7 @@ export default function ChainsXesWorld() {
     if (!isSupabaseConfigured) {
       setNotice({
         tone: "neutral",
-        text: "Supabase 尚未配置。设置 VITE_SUPABASE_URL 和 VITE_SUPABASE_ANON_KEY 后可启用云端保存。",
+        text: "Supabase is not configured yet. Set VITE_SUPABASE_URL and VITE_SUPABASE_ANON_KEY to enable cloud saving.",
       });
       return undefined;
     }
@@ -853,7 +853,7 @@ export default function ChainsXesWorld() {
       })
       .catch((error) => {
         if (!cancelled) {
-          setAuthNotice({ tone: "error", text: error.message || "登录状态读取失败。" });
+          setAuthNotice({ tone: "error", text: error.message || "Failed to read the login session." });
         }
       });
 
@@ -871,7 +871,7 @@ export default function ChainsXesWorld() {
   }, []);
 
   const filteredPhotos = useMemo(() => {
-    if (photoFilter === "全部") return photos;
+    if (photoFilter === "All") return photos;
     return photos.filter((photo) => photo.category === photoFilter);
   }, [photoFilter, photos]);
 
@@ -885,8 +885,8 @@ export default function ChainsXesWorld() {
   const clearDraft = () => {
     essayImages.forEach((image) => revokeLocalUrl(image.url));
     if (essayAudio?.url) revokeLocalUrl(essayAudio.url);
-    setEssayTitle("一段新的观察");
-    setEssayCategory("市场笔记");
+    setEssayTitle("A New Observation");
+    setEssayCategory("Market Notes");
     setEssayBody("");
     setEssayImages([]);
     setEssayAudio(null);
@@ -946,7 +946,7 @@ export default function ChainsXesWorld() {
     const body = essayBody.trim();
 
     if (!title || !body) {
-      setNotice({ tone: "error", text: "随笔标题和正文都需要填写。" });
+      setNotice({ tone: "error", text: "A title and body are both required." });
       return;
     }
 
@@ -962,9 +962,9 @@ export default function ChainsXesWorld() {
 
       setEssays((current) => [savedEssay, ...current]);
       clearDraft();
-      setNotice({ tone: "success", text: "随笔已发布到 Supabase。" });
+      setNotice({ tone: "success", text: "Note published to Supabase." });
     } catch (error) {
-      setNotice({ tone: "error", text: error.message || "随笔发布失败。" });
+      setNotice({ tone: "error", text: error.message || "Failed to publish the note." });
     } finally {
       setFormBusy(false);
     }
@@ -974,22 +974,22 @@ export default function ChainsXesWorld() {
     event.preventDefault();
 
     if (!isSupabaseConfigured) {
-      setAuthNotice({ tone: "error", text: "请先配置 Supabase 环境变量。" });
+      setAuthNotice({ tone: "error", text: "Configure the Supabase environment variables first." });
       return;
     }
 
     const email = loginEmail.trim().toLowerCase();
     if (email !== ADMIN_EMAIL.toLowerCase()) {
-      setAuthNotice({ tone: "error", text: `只有 ${ADMIN_EMAIL} 可以编辑内容。` });
+      setAuthNotice({ tone: "error", text: `Only ${ADMIN_EMAIL} can edit this site.` });
       return;
     }
 
     setAuthBusy(true);
     try {
       await signInWithEmail(email);
-      setAuthNotice({ tone: "success", text: "登录链接已发送，请检查邮箱并从邮件返回网站。" });
+      setAuthNotice({ tone: "success", text: "A login link has been sent. Check your inbox and return from the email link." });
     } catch (error) {
-      setAuthNotice({ tone: "error", text: error.message || "登录邮件发送失败。" });
+      setAuthNotice({ tone: "error", text: error.message || "Failed to send the login email." });
     } finally {
       setAuthBusy(false);
     }
@@ -999,9 +999,9 @@ export default function ChainsXesWorld() {
     setAuthBusy(true);
     try {
       await signOut();
-      setAuthNotice({ tone: "success", text: "已退出管理员账号。" });
+      setAuthNotice({ tone: "success", text: "Signed out of the admin account." });
     } catch (error) {
-      setAuthNotice({ tone: "error", text: error.message || "退出失败。" });
+      setAuthNotice({ tone: "error", text: error.message || "Failed to sign out." });
     } finally {
       setAuthBusy(false);
     }
@@ -1014,9 +1014,9 @@ export default function ChainsXesWorld() {
     try {
       await deleteEssay(essay);
       setEssays((current) => current.filter((item) => item.id !== essay.id));
-      setNotice({ tone: "success", text: "随笔已删除。" });
+      setNotice({ tone: "success", text: "Note deleted." });
     } catch (error) {
-      setNotice({ tone: "error", text: error.message || "随笔删除失败。" });
+      setNotice({ tone: "error", text: error.message || "Failed to delete the note." });
     } finally {
       setDeletingEssayId(null);
     }
@@ -1031,9 +1031,9 @@ export default function ChainsXesWorld() {
     try {
       const savedPhotos = await uploadPhotos({ files, category: photoUploadCategory });
       setPhotos((current) => [...savedPhotos, ...current]);
-      setNotice({ tone: "success", text: "摄影作品已上传到 Supabase。" });
+      setNotice({ tone: "success", text: "Photo work uploaded to Supabase." });
     } catch (error) {
-      setNotice({ tone: "error", text: error.message || "摄影作品上传失败。" });
+      setNotice({ tone: "error", text: error.message || "Failed to upload the photo work." });
     } finally {
       setFormBusy(false);
     }
@@ -1047,9 +1047,9 @@ export default function ChainsXesWorld() {
       await deletePhoto(photo);
       setPhotos((current) => current.filter((item) => item.id !== photo.id));
       setPreviewPhoto((current) => (current?.id === photo.id ? null : current));
-      setNotice({ tone: "success", text: "摄影作品已删除。" });
+      setNotice({ tone: "success", text: "Photo work deleted." });
     } catch (error) {
-      setNotice({ tone: "error", text: error.message || "摄影作品删除失败。" });
+      setNotice({ tone: "error", text: error.message || "Failed to delete the photo work." });
     } finally {
       setDeletingPhotoId(null);
     }
@@ -1067,7 +1067,7 @@ export default function ChainsXesWorld() {
         <p className="px-3 pb-3 text-[10px] uppercase tracking-[0.24em] text-stone-400">
           Outline
         </p>
-        <nav className="space-y-1" aria-label="页面大纲">
+        <nav className="space-y-1" aria-label="Page outline">
           {outlineItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
@@ -1118,7 +1118,7 @@ export default function ChainsXesWorld() {
                   disabled={authBusy}
                   className="rounded-full bg-stone-950 px-3 py-1.5 text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  退出
+                  Sign Out
                 </button>
               </div>
             ) : (
@@ -1138,7 +1138,7 @@ export default function ChainsXesWorld() {
                   disabled={authBusy || !isSupabaseConfigured}
                   className="rounded-full bg-stone-950 px-3 py-1.5 text-xs text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  {authBusy ? "发送中" : "管理员登录"}
+                  {authBusy ? "Sending" : "Admin Login"}
                 </button>
               </form>
             )}
@@ -1151,16 +1151,16 @@ export default function ChainsXesWorld() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="mb-6 text-sm tracking-[0.3em] text-stone-500">崔曦文</p>
+          <p className="mb-6 text-sm tracking-[0.3em] text-stone-500">Cui Xiwen</p>
           <h1 className="text-5xl font-semibold tracking-normal text-stone-950 sm:text-7xl lg:text-8xl">
             ChainsXes’s World
           </h1>
           <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-stone-700 sm:text-xl sm:leading-9">
-            在山川的轮廓里观察世界，在市场的波动里理解风险，在音乐、AI 与 Web3
-            之间持续重构自己。
+            I read the world through systems, volatility, rhythm, images, AI, and Web3.
           </p>
           <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-stone-500 sm:text-base">
-            本科来自水利水电工程，硕士阶段转向金融。喜欢音乐、摄影、AI、Web3、数码产品，也喜欢与不同背景的人交流。
+            Trained in hydraulic engineering and now moving into finance, I use markets, tools,
+            photography, and music to build my own field of observation.
           </p>
 
           <div className="mt-9 flex flex-wrap justify-center gap-3">
@@ -1207,7 +1207,7 @@ export default function ChainsXesWorld() {
                 disabled={authBusy || !isSupabaseConfigured}
                 className="rounded-lg bg-stone-950 px-4 py-2 text-sm text-white disabled:cursor-not-allowed disabled:opacity-50"
               >
-                {authBusy ? "发送中" : "管理员登录"}
+                {authBusy ? "Sending" : "Admin Login"}
               </button>
             </form>
           ) : null}
@@ -1225,13 +1225,18 @@ export default function ChainsXesWorld() {
           <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="space-y-6 text-lg leading-9 text-stone-700">
               <p>
-                我是崔曦文，本科就读于黑龙江大学水利水电工程专业，硕士阶段将在华东师范大学攻读金融硕士。
+                I am Cui Xiwen, trained in hydraulic and hydropower engineering at Heilongjiang
+                University and now moving toward a Master of Finance at East China Normal University.
               </p>
               <p>
-                我不是单一标签的人。工程训练让我习惯用结构化方式理解问题，金融市场让我开始理解风险、价值和周期，音乐与摄影让我保留表达和观察世界的方式。
+                Engineering taught me to think in structures, variables, and constraints. Markets
+                taught me to take risk, value, and cycles seriously. Music and photography keep my
+                way of seeing from becoming purely analytical.
               </p>
               <p>
-                我是一个 ENFP，喜欢社交，喜欢和不同背景的人聊天，也喜欢从交流中吸收新的经验。我希望这个网站呈现的是完整的我，而不是一份被简历格式限制住的介绍。
+                I am an ENFP who learns through conversation as much as through books. This site is
+                not meant to be a resume in disguise. It is a living map of how I observe, work, and
+                make sense of the world.
               </p>
             </div>
 
@@ -1250,7 +1255,7 @@ export default function ChainsXesWorld() {
         <SectionShell
           id="education"
           eyebrow="02 / From Engineering To Finance"
-          title="教育经历"
+          title="Education"
         >
           <div className="relative">
             <div className="absolute left-5 top-10 hidden h-[calc(100%-5rem)] w-px bg-stone-300/80 md:block" />
@@ -1277,7 +1282,7 @@ export default function ChainsXesWorld() {
           </div>
         </SectionShell>
 
-        <SectionShell id="practice" eyebrow="03 / Practice As Method" title="竞赛 / 实践经历">
+        <SectionShell id="practice" eyebrow="03 / Practice As Method" title="Systems, Markets, Risk">
           <div className="space-y-5">
             {practiceGroups.map((group) => (
               <GlassCard key={group.title} className="overflow-hidden">
@@ -1324,11 +1329,11 @@ export default function ChainsXesWorld() {
         <SectionShell
           id="essays"
           eyebrow="04 / Notes In Progress"
-          title="随笔"
+          title="Field Notes"
         >
           <div className="mb-8 max-w-3xl text-base leading-8 text-stone-600">
-            这里不是正式文章合集，而是我的观察记录。可能是一段市场复盘，也可能是一张照片背后的情绪；可能是一次
-            Web3 项目的研究，也可能是一次演出后的记录。
+            This is not a formal article archive. It is a field notebook for market reflections,
+            images, Web3 research, rehearsal fragments, and small observations that are still in motion.
           </div>
 
           {notice.text ? (
@@ -1343,20 +1348,20 @@ export default function ChainsXesWorld() {
                 <div className="space-y-5">
                   <div>
                     <label className="text-sm font-medium text-stone-800" htmlFor="essay-title">
-                      随笔标题
+                      Note Title
                     </label>
                     <input
                       id="essay-title"
                       value={essayTitle}
                       onChange={(event) => setEssayTitle(event.target.value)}
                       className="mt-2 w-full rounded-lg border border-stone-200 bg-white/70 px-4 py-3 text-sm text-stone-900 outline-none transition placeholder:text-stone-400 focus:border-stone-500"
-                      placeholder="写下一个标题"
+                      placeholder="Give this note a title"
                     />
                   </div>
 
                   <div>
                     <label className="text-sm font-medium text-stone-800" htmlFor="essay-category">
-                      分类
+                      Category
                     </label>
                     <select
                       id="essay-category"
@@ -1374,7 +1379,7 @@ export default function ChainsXesWorld() {
 
                   <div>
                     <label className="text-sm font-medium text-stone-800" htmlFor="essay-body">
-                      正文
+                      Body
                     </label>
                     <textarea
                       id="essay-body"
@@ -1382,14 +1387,14 @@ export default function ChainsXesWorld() {
                       onChange={(event) => setEssayBody(event.target.value)}
                       rows={9}
                       className="mt-2 w-full resize-none rounded-lg border border-stone-200 bg-white/70 px-4 py-3 text-sm leading-7 text-stone-900 outline-none transition placeholder:text-stone-400 focus:border-stone-500"
-                      placeholder="写一点真实的观察。"
+                      placeholder="Write an observation that feels true."
                     />
                   </div>
 
                   <div className="grid gap-3 sm:grid-cols-2">
                     <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-stone-300 bg-white/50 px-4 py-5 text-sm text-stone-600 transition hover:border-stone-500 hover:text-stone-950">
                       <UploadMark />
-                      上传图片
+                      Add Images
                       <input
                         type="file"
                         accept="image/*"
@@ -1404,7 +1409,7 @@ export default function ChainsXesWorld() {
                     </label>
                     <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-stone-300 bg-white/50 px-4 py-5 text-sm text-stone-600 transition hover:border-stone-500 hover:text-stone-950">
                       <UploadMark />
-                      上传音频
+                      Add Audio
                       <input
                         type="file"
                         accept="audio/*"
@@ -1425,7 +1430,7 @@ export default function ChainsXesWorld() {
                       disabled={formBusy}
                       className="rounded-full bg-stone-950 px-5 py-2.5 text-sm text-white transition hover:bg-stone-800 disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                      {formBusy ? "发布中" : "发布到云端"}
+                      {formBusy ? "Publishing" : "Publish To Cloud"}
                     </button>
                     <button
                       type="button"
@@ -1433,7 +1438,7 @@ export default function ChainsXesWorld() {
                       disabled={formBusy}
                       className="rounded-full border border-stone-300 bg-white/40 px-5 py-2.5 text-sm text-stone-600 transition hover:border-stone-600 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-50"
                     >
-                      清空草稿
+                      Clear Draft
                     </button>
                   </div>
                 </div>
@@ -1444,7 +1449,7 @@ export default function ChainsXesWorld() {
                   <div>
                     <p className="text-xs uppercase tracking-[0.24em] text-stone-400">Draft Preview</p>
                     <h3 className="mt-3 text-3xl font-semibold text-stone-950">
-                      {essayTitle || "未命名随笔"}
+                      {essayTitle || "Untitled Note"}
                     </h3>
                     <span className="mt-4 inline-flex rounded-full border border-stone-300/80 px-3 py-1.5 text-xs text-stone-500">
                       {essayCategory}
@@ -1453,7 +1458,7 @@ export default function ChainsXesWorld() {
                 </div>
 
                 <div className="mt-8 whitespace-pre-wrap text-base leading-8 text-stone-600">
-                  {essayBody || "正文会在这里实时出现。"}
+                  {essayBody || "The body will appear here as you write."}
                 </div>
 
                 <div className="mt-8">
@@ -1474,13 +1479,13 @@ export default function ChainsXesWorld() {
                             onClick={() => removeEssayImage(image.id)}
                             className="absolute right-2 top-2 rounded-full bg-stone-950/70 px-2 py-1 text-xs text-white opacity-0 transition group-hover:opacity-100"
                           >
-                            删除
+                            Delete
                           </button>
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <EmptyFrame title="图片墙" body="上传图片后，会在这里生成随笔里的视觉片段。" />
+                    <EmptyFrame title="Image Wall" body="Uploaded images will become visual fragments inside the note." />
                   )}
                 </div>
 
@@ -1494,13 +1499,13 @@ export default function ChainsXesWorld() {
                           onClick={clearEssayAudio}
                           className="shrink-0 rounded-full border border-stone-300 px-3 py-1 text-xs text-stone-500 transition hover:border-stone-700 hover:text-stone-950"
                         >
-                          移除
+                          Remove
                         </button>
                       </div>
                       <audio controls src={essayAudio.url} className="w-full" />
                     </div>
                   ) : (
-                    <EmptyFrame title="音频播放器" body="上传排练录音、现场片段或语音记录后，可在这里播放。" />
+                    <EmptyFrame title="Audio Player" body="Upload rehearsal clips, live fragments, or voice notes to play them here." />
                   )}
                 </div>
               </GlassCard>
@@ -1508,14 +1513,15 @@ export default function ChainsXesWorld() {
           ) : (
             <GlassCard>
               <p className="text-base leading-8 text-stone-600">
-                访客模式下仅展示已发布内容。使用管理员邮箱登录后，可以发布随笔并上传图片或音频。
+                Visitor mode only displays published content. Sign in with the admin email to publish
+                notes and upload images or audio.
               </p>
             </GlassCard>
           )}
 
           <div className="mt-10">
             <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-              <h3 className="text-2xl font-semibold text-stone-950">云端随笔</h3>
+              <h3 className="text-2xl font-semibold text-stone-950">Cloud Notes</h3>
               {isSupabaseConfigured ? (
                 <button
                   type="button"
@@ -1523,7 +1529,7 @@ export default function ChainsXesWorld() {
                   disabled={contentBusy}
                   className="w-fit rounded-full border border-stone-300 bg-white/40 px-4 py-2 text-xs text-stone-600 transition hover:border-stone-600 hover:text-stone-950 disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  {contentBusy ? "同步中" : "刷新内容"}
+                  {contentBusy ? "Syncing" : "Refresh Content"}
                 </button>
               ) : null}
             </div>
@@ -1541,24 +1547,28 @@ export default function ChainsXesWorld() {
                 ))}
               </div>
             ) : (
-              <EmptyFrame title="还没有云端随笔" body="发布第一篇随笔后，它会保存在 Supabase 并显示在这里。" />
+              <EmptyFrame title="No Cloud Notes Yet" body="After the first note is published, it will be saved in Supabase and shown here." />
             )}
           </div>
         </SectionShell>
 
-        <SectionShell id="interests" eyebrow="05 / Personal Frequencies" title="兴趣爱好">
+        <SectionShell id="interests" eyebrow="05 / Personal Frequencies" title="Interests">
           <div className="grid gap-6">
             <GlassCard>
               <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
                 <div>
                   <p className="text-xs uppercase tracking-[0.24em] text-stone-400">Music</p>
-                  <h3 className="mt-3 text-3xl font-semibold text-stone-950">音乐</h3>
+                  <h3 className="mt-3 text-3xl font-semibold text-stone-950">Music</h3>
                   <div className="mt-6 space-y-5 text-base leading-8 text-stone-600">
                     <p>
-                      音乐贯穿了我大学生活的重要阶段。从大二到大四，我担任沉默电台乐队鼓手，也作为黑龙江大学吉他协会核心成员参与多场文艺演出。
+                      Music ran through a large part of my college life. From sophomore to senior
+                      year, I played drums for Silent Radio and joined multiple stage performances as
+                      a core member of the Heilongjiang University Guitar Association.
                     </p>
                     <p>
-                      鼓手不是舞台最前方的位置，但它决定了节奏、推进和团队的稳定性。音乐对我而言，不只是兴趣，也是一种协作、表达和现场执行的训练。
+                      A drummer is not always at the front of the stage, but the role defines tempo,
+                      momentum, and stability. For me, music is not only an interest. It is training
+                      in collaboration, expression, and live execution.
                     </p>
                   </div>
                 </div>
@@ -1574,19 +1584,19 @@ export default function ChainsXesWorld() {
                   </div>
 
                   <div className="grid gap-3 sm:grid-cols-2">
-                    {["《希图诺》", "《滦河》"].map((work) => (
+                    {["Xitunuo", "Luanhe"].map((work) => (
                       <div
                         key={work}
                         className="rounded-lg border border-stone-200/80 bg-white/40 p-4"
                       >
-                        <p className="text-sm text-stone-500">原创作品</p>
+                        <p className="text-sm text-stone-500">Original Work</p>
                         <p className="mt-2 text-xl font-medium text-stone-950">{work}</p>
                       </div>
                     ))}
                   </div>
 
                   <div className="rounded-lg border border-stone-200/80 bg-white/40 p-4">
-                    <p className="mb-3 text-sm font-medium text-stone-800">音频占位播放器</p>
+                    <p className="mb-3 text-sm font-medium text-stone-800">Audio Placeholder</p>
                     <div className="flex items-center gap-3 rounded-lg bg-stone-950/5 px-4 py-4">
                       <span className="h-3 w-3 rounded-full bg-stone-400" />
                       <div className="h-1 flex-1 rounded-full bg-stone-300">
@@ -1607,8 +1617,9 @@ export default function ChainsXesWorld() {
               </div>
 
               <div className="mt-6 rounded-lg bg-stone-950/5 p-5 text-sm leading-7 text-stone-600">
-                黑龙江大学吉他协会核心成员，多次以吉协名义参与文创类演出；参与或策划约 5
-                场文艺演出，均担任鼓手，也是核心策划人之一。
+                Core member of the Heilongjiang University Guitar Association. I joined and helped
+                plan around five cultural performances, usually as drummer and one of the main
+                organizers.
               </div>
             </GlassCard>
 
@@ -1616,9 +1627,11 @@ export default function ChainsXesWorld() {
               <div className="grid gap-8 lg:grid-cols-[0.85fr_1.15fr]">
                 <div>
                   <p className="text-xs uppercase tracking-[0.24em] text-stone-400">Photography</p>
-                  <h3 className="mt-3 text-3xl font-semibold text-stone-950">摄影</h3>
+                  <h3 className="mt-3 text-3xl font-semibold text-stone-950">Photography</h3>
                   <p className="mt-6 text-base leading-8 text-stone-600">
-                    我更喜欢拍自然风光，而不是人。手机是我最常用的摄影工具。我喜欢用长焦捕捉细节，用全景记录空间，用构图寻找自然场景中的秩序。
+                    I am drawn more to landscapes than portraits. My phone is the camera I use most.
+                    I like using telephoto views for detail, panoramas for space, and composition to
+                    find order inside natural scenes.
                   </p>
 
                   <div className="mt-6 flex flex-wrap gap-2">
@@ -1641,7 +1654,7 @@ export default function ChainsXesWorld() {
                         value={photoUploadCategory}
                         onChange={(event) => setPhotoUploadCategory(event.target.value)}
                         className="rounded-lg border border-stone-200 bg-white/70 px-4 py-3 text-sm text-stone-900 outline-none transition focus:border-stone-500"
-                        aria-label="选择摄影作品分类"
+                        aria-label="Select photo category"
                       >
                         {uploadPhotoCategories.map((category) => (
                           <option key={category} value={category}>
@@ -1651,7 +1664,7 @@ export default function ChainsXesWorld() {
                       </select>
                       <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-stone-300 bg-white/50 px-5 py-3 text-sm text-stone-600 transition hover:border-stone-500 hover:text-stone-950">
                         <UploadMark />
-                        {formBusy ? "上传中" : "上传摄影作品"}
+                        {formBusy ? "Uploading" : "Upload Photo Work"}
                         <input
                           type="file"
                           accept="image/*"
@@ -1666,7 +1679,7 @@ export default function ChainsXesWorld() {
                       </label>
                     </div>
                   ) : (
-                    <Notice>访客可以浏览照片墙；管理员登录后可上传和删除摄影作品。</Notice>
+                    <Notice>Visitors can browse the photo wall. Admin login enables upload and deletion.</Notice>
                   )}
 
                   {filteredPhotos.length ? (
@@ -1680,7 +1693,7 @@ export default function ChainsXesWorld() {
                             type="button"
                             onClick={() => setPreviewPhoto(photo)}
                             className="h-full w-full"
-                            aria-label={`查看 ${photo.name}`}
+                            aria-label={`View ${photo.name}`}
                           >
                             <img
                               src={photo.url}
@@ -1698,18 +1711,18 @@ export default function ChainsXesWorld() {
                               onClick={() => removePhoto(photo)}
                               className="absolute right-2 top-2 rounded-full bg-stone-950/70 px-2 py-1 text-xs text-white opacity-0 transition group-hover:opacity-100 disabled:cursor-not-allowed disabled:opacity-60"
                             >
-                              {deletingPhotoId === photo.id ? "删除中" : "删除"}
+                              {deletingPhotoId === photo.id ? "Deleting" : "Delete"}
                             </button>
                           ) : null}
                         </div>
                       ))}
                     </div>
                   ) : (
-                    <EmptyFrame title="照片墙" body="上传作品后，可以按风光、城市、细节、全景和纪实筛选。" />
+                    <EmptyFrame title="Photo Wall" body="Uploaded works can be filtered by landscape, city, detail, panorama, and documentary categories." />
                   )}
 
                   <p className="text-xs leading-6 text-stone-500">
-                    照片从 Supabase 云端读取；未配置环境变量时，这里会保持为空。
+                    Photos are loaded from Supabase. Without environment variables, this area stays empty.
                   </p>
                 </div>
               </div>
@@ -1737,7 +1750,7 @@ export default function ChainsXesWorld() {
           className="fixed inset-0 z-50 flex items-center justify-center bg-stone-950/80 p-5 backdrop-blur-sm"
           role="dialog"
           aria-modal="true"
-          aria-label="摄影作品预览"
+          aria-label="Photo preview"
           onClick={() => setPreviewPhoto(null)}
         >
           <div
@@ -1757,14 +1770,14 @@ export default function ChainsXesWorld() {
               onClick={() => setPreviewPhoto(null)}
               className="absolute right-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-xs text-stone-700 backdrop-blur transition hover:bg-white"
             >
-              关闭
+              Close
             </button>
           </div>
         </div>
       ) : null}
 
       <footer className="relative px-5 py-12 text-center text-sm text-stone-500 sm:px-8 lg:px-16">
-        <p>ChainsXes’s World · 崔曦文</p>
+        <p>ChainsXes’s World · Cui Xiwen</p>
       </footer>
     </div>
   );
