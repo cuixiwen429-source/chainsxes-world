@@ -1,6 +1,8 @@
 # ChainsXes World
 
-Personal React web app for ChainsXes's homepage, essays, music, photography, AI, and Web3 notes.
+A static bilingual personal website for ChainsXes.
+
+The site is built with Vite, React, Framer Motion, and Tailwind CSS. It no longer uses Supabase or any database-backed media storage. Essays are text-only and saved locally in the browser through a lightweight admin console.
 
 ## Local Development
 
@@ -9,44 +11,27 @@ npm install
 npm run dev
 ```
 
-Copy `.env.example` to `.env.local` and fill in:
+The local URL uses the configured Vite base path:
 
 ```text
-VITE_SUPABASE_URL=...
-VITE_SUPABASE_ANON_KEY=...
+http://127.0.0.1:5173/chainsxes-world/
 ```
 
-The app still renders without these values, but cloud essays/photos are disabled until Supabase is configured.
+## Static Admin Notes
 
-## Supabase Setup
+The admin console is a front-end-only tool:
 
-1. Create a Supabase project.
-2. In Supabase SQL Editor, run `supabase/schema.sql`.
-3. In Authentication, enable email OTP/magic-link login.
-4. Add the deployed GitHub Pages URL to the Supabase Auth redirect URLs:
-   `https://<github-username>.github.io/chainsxes-world/`
+- Admin email: `694586386@qq.com`
+- Local admin key: `chainsxes-local-admin`
+- Essays are stored in `localStorage` in the current browser.
+- Use the JSON export/import buttons to back up or move notes.
 
-Admin editing is restricted by RLS to:
-
-```text
-694586386@qq.com
-```
-
-Visitors can read published essays/photos only.
+Because this is a static website, the admin key is not a real security boundary. A real private publishing system would require a backend.
 
 ## GitHub Pages Deployment
 
-Create a public GitHub repository named `chainsxes-world`, push the `main` branch, and enable Pages with GitHub Actions.
-
-Add these repository settings before the first production deploy:
+The deployment workflow is `.github/workflows/deploy.yml`. The Vite base path is configured as `/chainsxes-world/`, so the production URL is:
 
 ```text
-Repository variable: VITE_SUPABASE_URL
-Repository secret:   VITE_SUPABASE_ANON_KEY
-```
-
-The deployment workflow is `.github/workflows/deploy.yml`. The Vite base path is configured as `/chainsxes-world/`, so the final URL will be:
-
-```text
-https://<github-username>.github.io/chainsxes-world/
+https://cuixiwen429-source.github.io/chainsxes-world/
 ```

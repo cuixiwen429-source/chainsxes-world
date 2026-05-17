@@ -70,6 +70,7 @@ img {
 .backdrop-gradient,
 .backdrop-mesh,
 .backdrop-grid,
+.backdrop-scan,
 .backdrop-vignette,
 .backdrop-noise,
 .backdrop-marquees {
@@ -97,6 +98,16 @@ img {
   background-size: 96px 96px;
   mask-image: linear-gradient(180deg, transparent 0%, #000 18%, #000 72%, transparent 100%);
   opacity: 0.32;
+}
+
+.backdrop-scan {
+  background:
+    linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.06), transparent),
+    repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.035) 0 1px, transparent 1px 9px);
+  opacity: 0.18;
+  mix-blend-mode: screen;
+  transform: translateX(-18%);
+  animation: scan-drift 9s ease-in-out infinite alternate;
 }
 
 .backdrop-vignette {
@@ -283,6 +294,33 @@ img {
   display: none;
 }
 
+.language-toggle {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  gap: 0.2rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.24rem;
+}
+
+.language-toggle button {
+  min-width: 2.5rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  padding: 0.55rem 0.6rem;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.language-toggle button.active {
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+}
+
 .admin-dock {
   position: fixed;
   right: 1.25rem;
@@ -381,6 +419,17 @@ img {
   text-shadow: 0 0 50px rgba(255, 255, 255, 0.16);
 }
 
+.lang-zh .hero-copy h1 {
+  max-width: 980px;
+  margin-inline: auto;
+  font-size: clamp(3.8rem, 7.4vw, 7.2rem);
+  line-height: 1.02;
+}
+
+.lang-zh .hero-lead {
+  max-width: 720px;
+}
+
 .hero-lead {
   width: min(760px, 100%);
   margin: 1.6rem auto 0;
@@ -399,7 +448,8 @@ img {
 }
 
 .primary-button,
-.ghost-button {
+.ghost-button,
+.import-button {
   display: inline-flex;
   min-height: 3.1rem;
   align-items: center;
@@ -432,8 +482,23 @@ img {
   color: rgba(255, 255, 255, 0.86);
 }
 
+.import-button {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.045);
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.import-button input {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+}
+
 .primary-button:hover,
-.ghost-button:hover {
+.ghost-button:hover,
+.import-button:hover {
   transform: translateY(-2px);
 }
 
@@ -452,7 +517,6 @@ img {
 .content-panel,
 .composer,
 .essay-card,
-.photo-wall,
 .empty-state {
   border: 1px solid rgba(255, 255, 255, 0.12);
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.035));
@@ -625,7 +689,6 @@ img {
 .profile-card h3,
 .practice-card h3,
 .interest-card h3,
-.photo-wall h3,
 .empty-state h3,
 .essay-card h3,
 .timeline-item h3 {
@@ -704,8 +767,7 @@ img {
   margin-top: 1rem;
 }
 
-.tag-row small,
-.filter-row button {
+.tag-row small {
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.055);
@@ -714,8 +776,7 @@ img {
   font-size: 0.72rem;
 }
 
-.content-panel,
-.photo-wall {
+.content-panel {
   border-radius: 1.6rem;
   padding: clamp(1rem, 3vw, 1.5rem);
 }
@@ -745,11 +806,9 @@ img {
   padding: 1rem;
 }
 
-.composer-grid,
-.upload-grid,
-.photo-upload {
+.composer-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.85rem;
 }
 
@@ -783,85 +842,11 @@ select:focus {
   box-shadow: 0 0 0 3px rgba(54, 215, 255, 0.12);
 }
 
-.upload-zone {
-  position: relative;
-  display: grid;
-  min-height: 8rem;
-  place-items: center;
-  border: 1px dashed rgba(255, 255, 255, 0.2);
-  border-radius: 1.1rem;
-  background: rgba(255, 255, 255, 0.04);
-  padding: 1rem;
-  text-align: center;
-}
-
-.upload-zone.compact {
-  min-height: 3.1rem;
-}
-
-.upload-zone input {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-}
-
-.upload-zone span {
-  color: #fff;
-  font-size: 1rem;
-}
-
-.upload-zone small {
-  color: rgba(255, 255, 255, 0.52);
-  font-size: 0.75rem;
-}
-
-.draft-media {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
-
-.draft-media figure {
-  position: relative;
-  width: 7rem;
-  height: 7rem;
-  margin: 0;
-  overflow: hidden;
-  border-radius: 1rem;
-}
-
-.draft-media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.draft-media button,
-.audio-draft button,
 .text-button {
+  border: 0;
+  background: transparent;
   color: rgba(255, 255, 255, 0.74);
   font-size: 0.78rem;
-}
-
-.draft-media figure button {
-  position: absolute;
-  right: 0.45rem;
-  bottom: 0.45rem;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  border-radius: 999px;
-  background: rgba(0, 0, 0, 0.54);
-  padding: 0.28rem 0.5rem;
-}
-
-.audio-draft {
-  display: flex;
-  min-height: 3rem;
-  align-items: center;
-  gap: 0.75rem;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.05);
-  padding: 0.5rem 0.75rem;
 }
 
 .essay-list {
@@ -897,21 +882,27 @@ select:focus {
   margin-top: 0.45rem;
 }
 
-.essay-media-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.55rem;
+.essay-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 0.85rem;
 }
 
-.essay-media-grid img {
-  width: 100%;
-  aspect-ratio: 4 / 3;
-  border-radius: 0.9rem;
-  object-fit: cover;
+.essay-meta-row small {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.055);
+  padding: 0.35rem 0.58rem;
+  color: rgba(255, 255, 255, 0.66);
+  font-size: 0.72rem;
 }
 
-audio {
-  width: 100%;
+.essay-meta-row span {
+  display: flex;
+  gap: 0.75rem;
 }
 
 .danger {
@@ -920,6 +911,11 @@ audio {
 }
 
 .interest-layout {
+  display: grid;
+  gap: 1rem;
+}
+
+.world-layout {
   display: grid;
   gap: 1rem;
 }
@@ -947,79 +943,34 @@ audio {
   white-space: nowrap;
 }
 
-.photo-wall {
-  display: grid;
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.photo-wall-head {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.filter-row {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 0.45rem;
-}
-
-.filter-row button.active,
-.filter-row button:hover {
-  border-color: rgba(255, 255, 255, 0.28);
-  color: #fff;
-}
-
-.photo-grid {
+.signal-rail {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.85rem;
+  gap: 1rem;
 }
 
-.photo-card {
+.signal-rail span {
   position: relative;
-  margin: 0;
   overflow: hidden;
+  min-height: 8rem;
   border: 1px solid rgba(255, 255, 255, 0.12);
-  border-radius: 1.15rem;
-  background: rgba(255, 255, 255, 0.045);
+  border-radius: 1.35rem;
+  background:
+    linear-gradient(135deg, var(--glow), transparent 46%),
+    rgba(255, 255, 255, 0.045);
+  padding: 1.15rem;
+  color: rgba(255, 255, 255, 0.86);
+  font-size: clamp(1.1rem, 2.1vw, 1.65rem);
+  font-weight: 720;
+  line-height: 1.18;
 }
 
-.photo-card button {
-  width: 100%;
-  border: 0;
-  background: transparent;
-  padding: 0;
-}
-
-.photo-card img {
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-
-.photo-card:hover img {
-  transform: scale(1.04);
-}
-
-.photo-card figcaption {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.75rem;
-  padding: 0.75rem;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: 0.78rem;
-}
-
-.photo-card figcaption button {
-  width: auto;
-  color: #ffc2c2;
-  font-size: 0.76rem;
+.signal-rail span::after {
+  position: absolute;
+  inset: auto 1rem 1rem 1rem;
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, var(--accent), transparent);
 }
 
 .empty-state {
@@ -1063,25 +1014,6 @@ audio {
   text-align: right;
 }
 
-.lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  display: grid;
-  place-items: center;
-  background: rgba(0, 0, 0, 0.78);
-  padding: 1rem;
-  backdrop-filter: blur(18px);
-}
-
-.lightbox img {
-  max-width: min(92vw, 1100px);
-  max-height: 88vh;
-  border-radius: 1.2rem;
-  object-fit: contain;
-  box-shadow: 0 34px 120px rgba(0, 0, 0, 0.5);
-}
-
 @keyframes marquee-left {
   from {
     transform: translateX(0);
@@ -1112,6 +1044,16 @@ audio {
   }
 }
 
+@keyframes scan-drift {
+  from {
+    transform: translateX(-22%) skewX(-10deg);
+  }
+
+  to {
+    transform: translateX(22%) skewX(-10deg);
+  }
+}
+
 @keyframes symbol-spin {
   to {
     transform: rotate(360deg);
@@ -1139,6 +1081,10 @@ audio {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
+  .signal-rail {
+    grid-template-columns: 1fr;
+  }
+
   .hero-dashboard {
     position: relative;
     right: auto;
@@ -1158,6 +1104,8 @@ audio {
   .top-nav {
     align-items: flex-start;
     border-radius: 1.4rem;
+    gap: 0.35rem;
+    padding: 0.45rem;
   }
 
   .brand-mark span:last-child {
@@ -1165,12 +1113,23 @@ audio {
   }
 
   .top-nav nav {
-    width: 100%;
+    width: auto;
+    flex: 1 1 auto;
   }
 
   .top-nav nav button {
-    padding: 0.68rem 0.66rem;
-    font-size: 0.78rem;
+    padding: 0.62rem 0.52rem;
+    font-size: 0.76rem;
+  }
+
+  .language-toggle {
+    padding: 0.18rem;
+  }
+
+  .language-toggle button {
+    min-width: 2.05rem;
+    padding: 0.48rem 0.4rem;
+    font-size: 0.72rem;
   }
 
   .nav-full {
@@ -1184,19 +1143,8 @@ audio {
   .about-layout,
   .profile-grid,
   .interest-grid,
-  .composer-grid,
-  .upload-grid,
-  .photo-upload,
-  .photo-wall-head {
+  .composer-grid {
     grid-template-columns: 1fr;
-  }
-
-  .photo-wall-head {
-    display: grid;
-  }
-
-  .filter-row {
-    justify-content: flex-start;
   }
 
   .portrait-orbit {
@@ -1205,11 +1153,6 @@ audio {
 
   .timeline-item {
     grid-template-columns: 1fr;
-  }
-
-  .photo-grid,
-  .essay-media-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .site-footer {
@@ -1222,6 +1165,11 @@ audio {
 }
 
 @media (max-width: 620px) {
+  .top-nav {
+    top: 0.75rem;
+    width: calc(100% - 1rem);
+  }
+
   .hero-section {
     min-height: auto;
     padding-top: 7.5rem;
@@ -1229,6 +1177,21 @@ audio {
 
   .hero-copy {
     text-align: left;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2.75rem, 15vw, 5rem);
+  }
+
+  .lang-zh .hero-copy h1 {
+    font-size: clamp(2.65rem, 12.5vw, 4.4rem);
+    line-height: 1.08;
+  }
+
+  .hero-eyebrow,
+  .panel-eyebrow,
+  .section-heading span {
+    letter-spacing: 0.16em;
   }
 
   .hero-actions {
@@ -1253,11 +1216,6 @@ audio {
     right: auto;
     left: 0;
     font-size: clamp(3.3rem, 18vw, 6rem);
-  }
-
-  .photo-grid,
-  .essay-media-grid {
-    grid-template-columns: 1fr;
   }
 
   .admin-dock {
