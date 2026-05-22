@@ -2,7 +2,23 @@
 
 A static bilingual personal website for ChainsXes.
 
-The site is built with Vite, React, Framer Motion, and Tailwind CSS. It no longer uses Supabase or any database-backed media storage. Essays are text-only and saved locally in the browser through a lightweight admin console.
+The site is built with Vite, React, Framer Motion, Tailwind CSS, and Spline. It no longer uses Supabase or any database-backed media storage. Essays are text-only and saved locally in the browser through a lightweight admin console.
+
+## Spline 3D Background
+
+The full-page monochrome 3D atmosphere uses the Vite/React package entry:
+
+```jsx
+import Spline from "@splinetool/react-spline";
+```
+
+Scene URL:
+
+```text
+https://prod.spline.design/oOoC9vJEelZs4iIK/scene.splinecode
+```
+
+The Spline layer is lazy-loaded and has a CSS black-and-white glass fallback so the page still has a designed background if the external scene is slow or unavailable.
 
 ## Local Development
 

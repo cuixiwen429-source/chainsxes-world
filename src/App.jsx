@@ -1,8 +1,11 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { AnimatePresence, motion, useScroll, useTransform } from "framer-motion";
 
+const Spline = React.lazy(() => import("@splinetool/react-spline"));
+
 const ADMIN_EMAIL = "694586386@qq.com";
 const ADMIN_KEY = "chainsxes-local-admin";
+const SPLINE_SCENE_URL = "https://prod.spline.design/oOoC9vJEelZs4iIK/scene.splinecode";
 const STORAGE_KEYS = {
   language: "chainsxes.language",
   essays: "chainsxes.localEssays",
@@ -22,51 +25,51 @@ const sectionTargets = [{ id: "hero" }, ...navItems];
 const sectionThemes = {
   hero: {
     label: { en: "Opening", zh: "开场" },
-    ghost: "CHAINSXES WORLD",
-    accent: "#36d7ff",
-    glow: "rgba(54, 215, 255, 0.36)",
+    ghost: "GLASS REFLECTION",
+    accent: "#f7f7f2",
+    glow: "rgba(255, 255, 255, 0.24)",
     background:
-      "linear-gradient(118deg, rgba(35, 98, 255, 0.52) 0%, transparent 35%), linear-gradient(24deg, transparent 15%, rgba(55, 217, 255, 0.38) 48%, transparent 76%), linear-gradient(135deg, #040712 0%, #071334 45%, #02040d 100%)",
+      "radial-gradient(circle at 54% 35%, rgba(255, 255, 255, 0.18), transparent 27%), linear-gradient(118deg, rgba(255, 255, 255, 0.11) 0%, transparent 34%), linear-gradient(135deg, #050505 0%, #111111 44%, #000000 100%)",
   },
   about: {
     label: { en: "Identity", zh: "身份坐标" },
-    ghost: "SYSTEM THINKER",
-    accent: "#7ef7cc",
-    glow: "rgba(126, 247, 204, 0.3)",
+    ghost: "SYSTEM THINKING",
+    accent: "#f2f2ee",
+    glow: "rgba(255, 255, 255, 0.19)",
     background:
-      "linear-gradient(130deg, transparent 0%, rgba(39, 193, 151, 0.36) 42%, transparent 72%), linear-gradient(24deg, rgba(62, 126, 255, 0.28), transparent 42%), linear-gradient(140deg, #020611 0%, #06221d 48%, #050712 100%)",
+      "radial-gradient(circle at 34% 42%, rgba(255, 255, 255, 0.14), transparent 28%), linear-gradient(130deg, transparent 0%, rgba(255, 255, 255, 0.08) 43%, transparent 72%), linear-gradient(140deg, #030303 0%, #141414 48%, #020202 100%)",
   },
   education: {
     label: { en: "Trajectory", zh: "轨迹" },
-    ghost: "ENGINEERING TO FINANCE",
-    accent: "#9ab6ff",
-    glow: "rgba(154, 182, 255, 0.34)",
+    ghost: "ENGINEERING CAPITAL",
+    accent: "#ffffff",
+    glow: "rgba(255, 255, 255, 0.18)",
     background:
-      "linear-gradient(110deg, rgba(128, 161, 255, 0.36) 0%, transparent 42%), linear-gradient(22deg, transparent 18%, rgba(47, 224, 255, 0.24) 54%, transparent 82%), linear-gradient(135deg, #050716 0%, #111a35 42%, #03050e 100%)",
+      "radial-gradient(circle at 72% 32%, rgba(255, 255, 255, 0.13), transparent 30%), linear-gradient(110deg, rgba(255, 255, 255, 0.1) 0%, transparent 44%), linear-gradient(135deg, #060606 0%, #181818 42%, #030303 100%)",
   },
   practice: {
     label: { en: "Method", zh: "方法" },
     ghost: "MARKETS RISK WEB3",
-    accent: "#2effdf",
-    glow: "rgba(46, 255, 223, 0.32)",
+    accent: "#eeeeea",
+    glow: "rgba(255, 255, 255, 0.2)",
     background:
-      "linear-gradient(128deg, transparent 0%, rgba(28, 214, 195, 0.36) 46%, transparent 76%), linear-gradient(32deg, rgba(55, 116, 255, 0.24), transparent 45%), linear-gradient(140deg, #020713 0%, #05202c 50%, #02040b 100%)",
+      "radial-gradient(circle at 45% 45%, rgba(255, 255, 255, 0.16), transparent 29%), linear-gradient(128deg, transparent 0%, rgba(255, 255, 255, 0.1) 46%, transparent 76%), linear-gradient(140deg, #030303 0%, #151515 50%, #020202 100%)",
   },
   essays: {
     label: { en: "Archive", zh: "文字档案" },
-    ghost: "FIELD NOTES",
-    accent: "#ffd166",
-    glow: "rgba(255, 209, 102, 0.28)",
+    ghost: "STATIC ARCHIVE",
+    accent: "#f8f8f4",
+    glow: "rgba(255, 255, 255, 0.17)",
     background:
-      "linear-gradient(118deg, rgba(255, 209, 102, 0.25) 0%, transparent 40%), linear-gradient(28deg, transparent 18%, rgba(93, 211, 255, 0.22) 56%, transparent 82%), linear-gradient(140deg, #070611 0%, #171009 48%, #03040b 100%)",
+      "radial-gradient(circle at 64% 58%, rgba(255, 255, 255, 0.13), transparent 30%), linear-gradient(118deg, rgba(255, 255, 255, 0.09) 0%, transparent 40%), linear-gradient(140deg, #050505 0%, #151515 48%, #010101 100%)",
   },
   world: {
     label: { en: "Frequencies", zh: "个人频率" },
-    ghost: "MUSIC SIGNALS TOOLS",
-    accent: "#ff7bbf",
-    glow: "rgba(255, 123, 191, 0.28)",
+    ghost: "PERSONAL FREQUENCIES",
+    accent: "#f1f1ed",
+    glow: "rgba(255, 255, 255, 0.16)",
     background:
-      "linear-gradient(126deg, transparent 0%, rgba(255, 123, 191, 0.3) 44%, transparent 74%), linear-gradient(26deg, rgba(61, 216, 255, 0.25), transparent 48%), linear-gradient(140deg, #080510 0%, #19091d 44%, #03040b 100%)",
+      "radial-gradient(circle at 28% 62%, rgba(255, 255, 255, 0.12), transparent 32%), linear-gradient(126deg, transparent 0%, rgba(255, 255, 255, 0.08) 44%, transparent 74%), linear-gradient(140deg, #040404 0%, #121212 44%, #010101 100%)",
   },
 };
 
@@ -208,8 +211,8 @@ const copy = {
 };
 
 const heroTags = {
-  en: ["FINANCE", "WEB3", "AI WORKFLOWS", "SYSTEMS", "RISK", "WRITING", "MUSIC", "CAPITAL MARKETS"],
-  zh: ["金融", "工程思维", "链上世界", "AI 工具", "风险", "写作", "音乐", "长期主义"],
+  en: ["DISTORT SIGNAL", "GLASS REFLECTION", "SYSTEM THINKING", "STATIC ARCHIVE", "BILINGUAL FIELD"],
+  zh: ["扭曲信号", "玻璃反射", "系统思维", "静态档案", "双语场域"],
 };
 
 const defaultEssays = [
@@ -437,6 +440,60 @@ function readJson(key, fallback) {
   }
 }
 
+class SplineErrorBoundary extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { failed: false };
+  }
+
+  static getDerivedStateFromError() {
+    return { failed: true };
+  }
+
+  render() {
+    if (this.state.failed) return this.props.fallback;
+    return this.props.children;
+  }
+}
+
+function SplineFallback() {
+  return (
+    <div className="spline-fallback" aria-hidden="true">
+      <div className="fallback-type">
+        <span>DISTORT SIGNAL</span>
+        <span>GLASS REFLECTION</span>
+        <span>SYSTEM THINKING</span>
+      </div>
+      <span className="fallback-sphere fallback-sphere-main" />
+      <span className="fallback-sphere fallback-sphere-small" />
+      <span className="fallback-sphere fallback-sphere-mini" />
+    </div>
+  );
+}
+
+function SplineBackdrop() {
+  const [ready, setReady] = useState(false);
+  const [failed, setFailed] = useState(false);
+
+  return (
+    <div className={`spline-backdrop ${ready ? "spline-ready" : ""} ${failed ? "spline-failed" : ""}`} aria-hidden="true">
+      <div className="spline-stage">
+        {!ready || failed ? <SplineFallback /> : null}
+        {!failed ? (
+          <SplineErrorBoundary fallback={<SplineFallback />}>
+            <React.Suspense fallback={null}>
+              <div className="spline-canvas-wrap">
+                <Spline scene={SPLINE_SCENE_URL} onLoad={() => setReady(true)} onError={() => setFailed(true)} />
+              </div>
+            </React.Suspense>
+          </SplineErrorBoundary>
+        ) : null}
+        <div className="spline-veil" />
+      </div>
+    </div>
+  );
+}
+
 function MarqueeBand({ words, reverse = false, muted = false }) {
   const content = [...words, ...words, ...words];
   return (
@@ -455,6 +512,7 @@ function MotionBackdrop({ activeSection, language, y }) {
 
   return (
     <motion.div className="motion-backdrop" style={{ "--accent": theme.accent, "--glow": theme.glow, y }}>
+      <SplineBackdrop />
       <motion.div
         className="backdrop-gradient"
         animate={{ background: theme.background }}
