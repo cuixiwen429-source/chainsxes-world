@@ -471,9 +471,26 @@ function SplineFallback() {
   );
 }
 
+function GlassOrbField({ className = "" }) {
+  return (
+    <div className={`glass-orb-field ${className}`} aria-hidden="true">
+      <span className="glass-orb glass-orb-main" />
+      <span className="glass-orb glass-orb-left" />
+      <span className="glass-orb glass-orb-right" />
+      <span className="glass-orb glass-orb-dot" />
+    </div>
+  );
+}
+
 function SplineBackdrop() {
   const [ready, setReady] = useState(false);
   const [failed, setFailed] = useState(false);
+
+  useEffect(() => {
+    if (typeof document === "undefined") return undefined;
+    document.documentElement.classList.toggle("spline-scene-ready", ready && !failed);
+    return () => document.documentElement.classList.remove("spline-scene-ready");
+  }, [ready, failed]);
 
   return (
     <div className={`spline-backdrop ${ready ? "spline-ready" : ""} ${failed ? "spline-failed" : ""}`} aria-hidden="true">
@@ -488,6 +505,7 @@ function SplineBackdrop() {
             </React.Suspense>
           </SplineErrorBoundary>
         ) : null}
+        <GlassOrbField className="backdrop-orbs" />
         <div className="spline-veil" />
       </div>
     </div>
@@ -921,26 +939,27 @@ export default function ChainsXesWorld() {
       />
 
       <main>
-        <section id="hero" className="hero-section">
-          <div className="hero-type-layer" aria-hidden="true">
-            <MarqueeBand words={heroTags[language]} />
-            <MarqueeBand words={language === "zh" ? ["崔曦文", "个人系统", "随笔", "市场", "节奏"] : ["CUI XIWEN", "CHAINSXES", "FIELD NOTES", "MUSIC", "MARKETS"]} reverse muted />
+        <section id="hero" className="hero-section hero-glass-stage">
+          <div className="hero-typography" aria-hidden="true">
+            <span>DISTORTING!</span>
+            <span>PUSHING BEYOND</span>
+            <span>THE LIMITS OF</span>
+            <span>TYPOGRAPHIC</span>
+            <span>GLASS REFLECTION</span>
           </div>
-          <div className="hero-copy">
-            <motion.p className="hero-eyebrow" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-              {labels.heroEyebrow}
-            </motion.p>
+          <GlassOrbField className="hero-orbs" />
+          <div className="hero-edge-copy">
             <motion.h1
               initial={{ opacity: 0, y: 36, filter: "blur(16px)" }}
               animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
               transition={{ duration: 1, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
-              {labels.heroTitle}
+              ChainsXes World
             </motion.h1>
-            <motion.p className="hero-lead" initial={{ opacity: 0, y: 28 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.24 }}>
-              {labels.heroLead}
+            <motion.p className="hero-eyebrow" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.18 }}>
+              {labels.heroEyebrow}
             </motion.p>
-            <motion.div className="hero-actions" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.38 }}>
+            <motion.div className="hero-actions" initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}>
               <button className="primary-button" type="button" onClick={() => scrollToSection("practice")}>
                 {labels.primaryCta}
               </button>
@@ -949,34 +968,9 @@ export default function ChainsXesWorld() {
               </button>
             </motion.div>
           </div>
-
-          <div className="hero-dashboard" aria-label="Personal signal overview">
-            {(language === "zh"
-              ? [
-                  ["01", "工程", "先看结构"],
-                  ["02", "金融", "风险先于收益"],
-                  ["03", "Web3", "激励写进系统"],
-                  ["04", "写作", "把信号留下"],
-                ]
-              : [
-                  ["01", "Engineering", "Structure first"],
-                  ["02", "Finance", "Risk before return"],
-                  ["03", "Web3", "Incentives on-chain"],
-                  ["04", "Writing", "Signals retained"],
-                ]
-            ).map(([index, title, body]) => (
-              <motion.div
-                className="signal-tile"
-                key={title}
-                initial={{ opacity: 0, y: 28 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.46 + Number(index) * 0.08 }}
-              >
-                <span>{index}</span>
-                <strong>{title}</strong>
-                <p>{body}</p>
-              </motion.div>
-            ))}
+          <div className="hero-stage-caption">
+            <span>{language === "zh" ? "黑白 3D 个人场域" : "Monochrome 3D Personal Field"}</span>
+            <p>{language === "zh" ? "Finance / Web3 / AI / Systems / Notes" : "Finance / Web3 / AI / Systems / Notes"}</p>
           </div>
         </section>
 
